@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maritza Fawwaz Rafa Wiguna — Portofolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Manrope', 'sans-serif'],
+          },
+          colors: {
+            primary: '#404040',     /* Abu-Abu Utama */
+            primarydark: '#2B2B2B', /* Abu-Abu Gelap Hover */
+            accentwarm: '#ADADAD',  /* Abu-Abu Muda Netral */
+            ink: '#1A1A1A',         /* Teks Utama Gelap Lembut */
+            surface: '#E4E4E4',     /* Latar Belakang Abu-Abu Sangat Muda & Clean */
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: #E4E4E4;
+      color: #1A1A1A;
+      overflow-x: hidden;
+    }
+
+    /* Sembunyikan scrollbar di carousel HP agar bersih */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Animasi Marquee Berjalan Miring */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marquee 26s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Animasi Bingkai Kotak Berputar Halus */
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-ring { animation: spinSlow 30s linear infinite; }
+
+    /* Animasi Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+
+    @keyframes blinkCaret { 50% { opacity: 0; } }
+
+    .caret {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background-color: #404040;
+      margin-left: 4px;
+      vertical-align: middle;
+      animation: blinkCaret 0.9s steps(1) infinite;
+    }
+
+    /* Pesawat Kertas Terbang */
+    #plane {
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 45;
+      pointer-events: none;
+      will-change: transform;
+      filter: drop-shadow(0 8px 12px rgba(64, 64, 64, 0.25));
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-primary selection:text-white">
+
+  <!-- Pesawat Kertas Terbang Mengikuti Scroll -->
+  <div id="plane" aria-hidden="true" class="w-10 h-8 md:w-20 md:h-14">
+    <svg viewBox="0 0 32 24" class="w-full h-full">
+      <path d="M31 12 2 1l7 11-7 11z" fill="#FFFFFF" stroke="#404040" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M31 12H9l3 8z" fill="#ADADAD" stroke="#404040" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-[#E4E4E4]/90 backdrop-blur-md border-b border-stone-200">
+    <div class="max-w-6xl mx-auto px-5 md:px-8 h-14 md:h-20 flex items-center justify-end md:justify-center relative">
+      <nav class="hidden md:flex items-center gap-10 text-sm font-semibold text-stone-600">
+        <a href="#tentang" class="hover:text-primary transition">Tentang</a>
+        <a href="#keahlian" class="hover:text-primary transition">Keahlian</a>
+        <a href="#proyek" class="hover:text-primary transition">Proyek</a>
+        <a href="#kontak" class="px-5 py-2.5 rounded-full bg-primary text-white hover:bg-primarydark transition shadow-sm">Kontak</a>
+      </nav>
+
+      <button id="menu-btn" aria-label="Buka navigasi" class="md:hidden w-9 h-9 rounded-full border border-stone-300 flex flex-col items-center justify-center gap-1.5">
+        <span class="w-4 h-0.5 bg-stone-700 block"></span>
+        <span class="w-4 h-0.5 bg-stone-700 block"></span>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-[#E4E4E4] border-b border-stone-200 px-6 py-4 space-y-3">
+      <a href="#tentang" class="mobile-link block text-sm font-bold text-ink">Tentang</a>
+      <a href="#keahlian" class="mobile-link block text-sm font-bold text-ink">Keahlian</a>
+      <a href="#proyek" class="mobile-link block text-sm font-bold text-ink">Proyek</a>
+      <a href="#kontak" class="mobile-link inline-block px-5 py-2 rounded-full bg-primary text-white text-xs font-bold">Hubungi Saya</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="pt-8 pb-16 md:pt-20 md:pb-28 px-5 md:px-8 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+        
+        <div class="lg:col-span-7 reveal active">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-stone-300 bg-stone-100 text-xs font-bold text-stone-800 mb-5">
+            <span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+            <span id="type-word">Halo</span><span class="caret"></span>
+            <span id="type-lang" class="text-stone-500 font-medium pl-1.5 border-l border-stone-300">Bahasa Indonesia</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter leading-[1.1] text-stone-900 mb-5">
+           Halo Saya Maritza Fawwaz Rafa Wiguna
+          </h1>
+
+          <p class="text-sm md:text-lg text-stone-600 max-w-xl leading-relaxed mb-7">
+            Saya adalah siswi dari <strong class="text-stone-900 font-bold">SMKN 4 Malang</strong> jurusan <strong class="text-primary font-bold">Rekayasa Perangkat Lunak (RPL)</strong>. 
+
+          <a href="#proyek" class="inline-block px-6 py-3 rounded-full bg-primary text-white text-xs md:text-sm font-bold hover:bg-primarydark transition shadow-sm">
+            Lihat Proyek
+          </a>
+        </div>
+
+        <!-- Frame Foto Profil Proporsional -->
+        <div class="lg:col-span-5 flex justify-center lg:justify-end reveal active">
+          <div class="relative w-52 sm:w-64 md:w-[300px] aspect-[3/4] flex items-center justify-center">
+            <div aria-hidden="true" class="spin-ring absolute -inset-2.5 md:-inset-3 rounded-[2rem] border-2 border-dashed border-stone-400/60 pointer-events-none"></div>
+            <div aria-hidden="true" class="spin-ring absolute -inset-5 md:-inset-6 rounded-[2.5rem] border border-stone-300 pointer-events-none" style="animation-direction: reverse; animation-duration: 42s;"></div>
+
+            <div class="relative w-full h-full rounded-3xl bg-white border-2 border-stone-300 hover:border-primary overflow-hidden shadow-md transition hover:scale-[1.01]">
+              <img src="images/foto-profil.jpeg" alt="Foto profil Maritza Fawwaz Rafa Wiguna" class="w-full h-full object-cover" loading="eager" decoding="async">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MARQUEE BERJALAN MIRING (ABU-ABU NETRAL) -->
+    <div class="relative py-5 overflow-hidden">
+      <div class="-rotate-2 scale-105 bg-gradient-to-r from-[#404040] via-[#363636] to-[#555555] text-white py-3.5 border-y-2 border-[#ADADAD]/40 shadow-md">
+        <div class="marquee-track font-extrabold text-xs md:text-base tracking-wide">
+          <div class="flex items-center gap-7 px-4">
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#007ACC" fill-rule="evenodd" d="M17.5 2 8 11 4 8 2.5 9v6L4 16l4-3 9.5 9L23 19.5v-15zM17.5 7.5v9L11.5 12z"/></svg></span>VS Code</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#E44D26" d="M3 2l1.7 18.5L12 22.5l7.3-2L21 2z"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="sans-serif">5</text></svg></span>HTML5</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#1572B6" d="M3 2l1.7 18.5L12 22.5l7.3-2L21 2z"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="sans-serif">3</text></svg></span>CSS3</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E"/><text x="19.5" y="19" text-anchor="end" font-size="9.5" font-weight="800" fill="#222" font-family="sans-serif">JS</text></svg></span>JavaScript</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center text-[#777BB4] font-black text-[9px]">PHP</span>PHP</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#02569B" d="M14.3 2L4 12.3l3.2 3.2L20.7 2zm0 9.2L8.8 16.7l5.5 5.3h6.4l-5.5-5.3 5.5-5.5z"/></svg></span>Flutter</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><rect x="5" y="5" width="14" height="14" rx="2.5" transform="rotate(45 12 12)" fill="#F05033"/><g fill="#fff"><circle cx="10" cy="15" r="1.5"/><circle cx="10" cy="8.5" r="1.5"/><circle cx="15" cy="11.5" r="1.5"/></g><path d="M10 9v6M10 12.5c0-1 1.5-1 3.5-1" stroke="#fff" stroke-width="1.2" fill="none"/></svg></span>Git</span><span class="text-[#ADADAD]">✦</span>
+          </div>
+          <div class="flex items-center gap-7 px-4">
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#007ACC" fill-rule="evenodd" d="M17.5 2 8 11 4 8 2.5 9v6L4 16l4-3 9.5 9L23 19.5v-15zM17.5 7.5v9L11.5 12z"/></svg></span>VS Code</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#E44D26" d="M3 2l1.7 18.5L12 22.5l7.3-2L21 2z"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="sans-serif">5</text></svg></span>HTML5</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#1572B6" d="M3 2l1.7 18.5L12 22.5l7.3-2L21 2z"/><text x="12" y="16.5" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="sans-serif">3</text></svg></span>CSS3</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><rect x="2" y="2" width="20" height="20" rx="3" fill="#F7DF1E"/><text x="19.5" y="19" text-anchor="end" font-size="9.5" font-weight="800" fill="#222" font-family="sans-serif">JS</text></svg></span>JavaScript</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center text-[#777BB4] font-black text-[9px]">PHP</span>PHP</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><path fill="#02569B" d="M14.3 2L4 12.3l3.2 3.2L20.7 2zm0 9.2L8.8 16.7l5.5 5.3h6.4l-5.5-5.3 5.5-5.5z"/></svg></span>Flutter</span><span class="text-[#ADADAD]">✦</span>
+            <span class="inline-flex items-center gap-2"><span class="w-6 h-6 rounded-md bg-white flex items-center justify-center"><svg viewBox="0 0 24 24" class="w-3.5 h-3.5"><rect x="5" y="5" width="14" height="14" rx="2.5" transform="rotate(45 12 12)" fill="#F05033"/><g fill="#fff"><circle cx="10" cy="15" r="1.5"/><circle cx="10" cy="8.5" r="1.5"/><circle cx="15" cy="11.5" r="1.5"/></g><path d="M10 9v6M10 12.5c0-1 1.5-1 3.5-1" stroke="#fff" stroke-width="1.2" fill="none"/></svg></span>Git</span><span class="text-[#ADADAD]">✦</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TENTANG SAYA -->
+    <section id="tentang" class="py-16 md:py-28 px-5 md:px-8 max-w-6xl mx-auto">
+      <div class="reveal grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-start">
+        <div class="md:col-span-5">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-primary">01 / Profil Singkat</span>
+          <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight text-stone-900 mt-1.5">Tentang Saya</h2>
+        </div>
+        <div class="md:col-span-7 space-y-5">
+          <p class="text-sm md:text-lg text-stone-600 leading-relaxed">
+            Saya merupakan siswi SMKN 4 Malang jurusan Rekayasa Perangkat Lunak (RPL). Saya telah mempelajari dasar pemrograman seperti HTML, CSS, JavaScript, PHP, dan Java, serta framework CodeIgniter, Laravel, Next.js, dan Flutter. Saya juga memiliki pengalaman menggunakan database MySQL dan Supabase, serta merancang sistem melalui Flowchart, ERD, dan Use Case Diagram. Saya terus mengembangkan kemampuan dalam membuat website dan aplikasi yang fungsional, responsif, serta bermanfaat bagi pengguna.
+          </p>
+          <div class="border-t border-stone-200 divide-y divide-stone-200 text-xs md:text-base">
+            <div class="py-3 flex justify-between gap-4">
+              <span class="text-stone-500">Nama Lengkap</span>
+              <span class="font-bold text-stone-900 text-right">Maritza Fawwaz Rafa Wiguna</span>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <span class="text-stone-500">Instansi Pendidikan</span>
+              <span class="font-bold text-stone-900 text-right">SMKN 4 Malang</span>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <span class="text-stone-500">Kompetensi Keahlian</span>
+              <span class="font-bold text-stone-900 text-right">Rekayasa Perangkat Lunak (RPL)</span>
+            </div>
+            <div class="py-3 flex justify-between gap-4">
+              <span class="text-stone-500">Teknologi yang Dipelajari</span>
+              <span class="font-bold text-stone-900 text-right">HTML, CSS, JS, PHP, Java, Flutter, Codeigniter, Next.JS, React, Laravel</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEAHLIAN & FOKUS -->
+    <section id="keahlian" class="relative py-16 md:py-28 px-5 md:px-8 overflow-hidden bg-[#404040]">
+      <div class="absolute inset-0 z-0">
+        <img src="images/bg-keahlian.jpg" alt="Latar belakang Keahlian &amp; Fokus" class="w-full h-full object-cover" loading="lazy" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#2B2B2B]/85 via-[#404040]/75 to-[#2E2E2E]/90"></div>
+      </div>
+
+      <div class="relative z-10 max-w-5xl mx-auto">
+        <div class="reveal text-center max-w-xl mx-auto mb-10 md:mb-14 text-white">
+          <span class="text-xs font-extrabold uppercase tracking-widest text-[#ADADAD]">02 / Kompetensi</span>
+          <h2 class="text-2xl md:text-5xl font-extrabold tracking-tight mt-1.5">Keahlian &amp; Fokus</h2>
+          <p class="text-xs md:text-base text-stone-200 mt-2.5">Bidang pengembangan perangkat lunak yang saya pelajari dan terapkan dalam berbagai proyek.</p>
+        </div>
+
+        <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <div class="group p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-md border border-white/40 hover:bg-white transition flex items-center justify-between gap-4 shadow-sm">
+            <div>
+              <h3 class="text-base md:text-xl font-extrabold text-stone-900">Pengembangan Aplikasi </h3>
+              <p class="text-xs md:text-sm text-stone-600 mt-1">Membangun aplikasi mobile interaktif berbasis Android. </p>
+            </div>
+            <span class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#404040] group-hover:bg-[#ADADAD] group-hover:text-stone-900 text-white flex items-center justify-center shrink-0 group-hover:rotate-45 transition-all">↗</span>
+          </div>
+
+          <div class="group p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-md border border-white/40 hover:bg-white transition flex items-center justify-between gap-4 shadow-sm">
+            <div>
+              <h3 class="text-base md:text-xl font-extrabold text-stone-900">Pengembangan Web. </h3>
+              <p class="text-xs md:text-sm text-stone-600 mt-1">Merancang sistem website dinamis, pengelolaan database, dan alur transaksi.</p>
+            </div>
+            <span class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#404040] group-hover:bg-[#ADADAD] group-hover:text-stone-900 text-white flex items-center justify-center shrink-0 group-hover:rotate-45 transition-all">↗</span>
+          </div>
+
+          <div class="group p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-md border border-white/40 hover:bg-white transition flex items-center justify-between gap-4 shadow-sm">
+            <div>
+              <h3 class="text-base md:text-xl font-extrabold text-stone-900">Sistem E-Commerce &amp; Rekber</h3>
+              <p class="text-xs md:text-sm text-stone-600 mt-1">Perancangan alur jual beli multi-peran dengan verifikasi admin dan rekening bersama.</p>
+            </div>
+            <span class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#404040] group-hover:bg-[#ADADAD] group-hover:text-stone-900 text-white flex items-center justify-center shrink-0 group-hover:rotate-45 transition-all">↗</span>
+          </div>
+
+          <div class="group p-5 md:p-6 rounded-2xl md:rounded-3xl bg-white/95 backdrop-blur-md border border-white/40 hover:bg-white transition flex items-center justify-between gap-4 shadow-sm">
+            <div>
+              <h3 class="text-base md:text-xl font-extrabold text-stone-900">Perancangan Antarmuka (UI/UX)</h3>
+              <p class="text-xs md:text-sm text-stone-600 mt-1">Menyusun tata letak antarmuka yang bersih, responsif, dan mudah dipahami pengguna.</p>
+            </div>
+            <span class="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#404040] group-hover:bg-[#ADADAD] group-hover:text-stone-900 text-white flex items-center justify-center shrink-0 group-hover:rotate-45 transition-all">↗</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROYEK PILIHAN -->
+    <section id="proyek" class="py-16 md:py-28 px-5 md:px-8 max-w-6xl mx-auto">
+      <div class="reveal text-center max-w-xl mx-auto mb-12 md:mb-16">
+        <span class="text-xs font-extrabold uppercase tracking-widest text-primary">03 / Portofolio</span>
+        <h2 class="text-2xl md:text-5xl font-extrabold tracking-tight text-stone-900 mt-1.5">Proyek Terbaru</h2>
+        <p class="text-xs md:text-base text-stone-500 mt-2.5">Beberapa karya aplikasi mobile dan website yang telah saya rancang dan kembangkan.</p>
+      </div>
+
+      <!-- PROYEK 1: LISAN NUSANTARA -->
+      <article class="reveal mb-20 md:mb-24">
+        <div class="mb-5">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#404040] text-white text-xs font-bold">Mobile App</span>
+            <span class="inline-block px-3 py-1 rounded-full bg-[#ADADAD]/40 text-[#2E2E2E] text-xs font-bold">Flutter</span>
+          </div>
+          <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight text-stone-900">Lisan Nusantara</h3>
+          <p class="text-xs md:text-base text-stone-600 max-w-3xl mt-2 leading-relaxed">
+            Aplikasi mobile pembelajaran bahasa daerah yang dikembangkan menggunakan <strong class="text-stone-900">Flutter</strong>. Aplikasi ini menghadirkan fitur kuis interaktif, kursus pembelajaran yang disusun berdasarkan <strong class="text-stone-900">dialek</strong> (bukan sekadar kamus kata), serta fitur terjemahan bahasa daerah yang praktis.
+          </p>
+        </div>
+
+       
+        <div class="flex sm:grid sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory no-scrollbar pb-2">
+          <!-- Frame 1 -->
+          <div data-slot-id="lisan-1" class="photo-slot shrink-0 w-[190px] sm:w-auto snap-center relative aspect-[9/18] rounded-3xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/Aplikasi1.png" alt="Layar aplikasi Lisan Nusantara 1" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Frame 2 -->
+          <div data-slot-id="lisan-2" class="photo-slot shrink-0 w-[190px] sm:w-auto snap-center relative aspect-[9/18] rounded-3xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/Aplikasi2-2.png" alt="Layar aplikasi Lisan Nusantara 2" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Frame 3 -->
+          <div data-slot-id="lisan-3" class="photo-slot shrink-0 w-[190px] sm:w-auto snap-center relative aspect-[9/18] rounded-3xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/Aplikasi4.png" alt="Layar aplikasi Lisan Nusantara 3" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Frame 4 -->
+          <div data-slot-id="lisan-4" class="photo-slot shrink-0 w-[190px] sm:w-auto snap-center relative aspect-[9/18] rounded-3xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/Aplikasi7.png" alt="Layar aplikasi Lisan Nusantara 4" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Frame 5 -->
+          <div data-slot-id="lisan-5" class="photo-slot shrink-0 w-[190px] sm:w-auto snap-center relative aspect-[9/18] rounded-3xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/Aplikasi2.png" alt="Layar aplikasi Lisan Nusantara 5" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+        </div>
+
+        <!-- EMBED VIDEO YOUTUBE -->
+        <div class="mt-7">
+          <div class="w-full max-w-4xl mx-auto aspect-video rounded-2xl md:rounded-3xl overflow-hidden border border-stone-200 shadow-lg bg-stone-900">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/Iymf9otYzAE?si=zGspxc-L3seHBEPu" title="Video Demo Lisan Nusantara" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROYEK 2: MARKETPLACE THRIFTY -->
+      <article class="reveal">
+        <div class="mb-5">
+          <div class="flex flex-wrap items-center gap-2 mb-2">
+            <span class="inline-block px-3 py-1 rounded-full bg-[#404040] text-white text-xs font-bold">Web Development</span>
+            <span class="inline-block px-3 py-1 rounded-full bg-[#ADADAD]/40 text-[#2E2E2E] text-xs font-bold">Next JS</span>
+          </div>
+          <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight text-stone-900">Marketplace Thrifty</h3>
+          <p class="text-xs md:text-base text-stone-600 max-w-3xl mt-2 leading-relaxed">
+            Website marketplace khusus fashion bekas (<em>thrifting</em>) di mana satu akun pengguna dapat berperan sekaligus sebagai penjual maupun pembeli. Sistem transaksi telah dilengkapi dengan <strong class="text-stone-900">rekening bersama (rekber)</strong> demi keamanan transaksi, proses pengajuan serta persetujuan produk oleh admin sebelum tampil di katalog, serta rencana pengembangan fitur <strong class="text-stone-900">afiliasi (affiliate)</strong>.
+          </p>
+        </div>
+
+        <p class="sm:hidden text-[11px] font-bold text-stone-900 mb-2.5 tracking-tight">
+          
+        </p>
+
+        <!-- Frame Khusus Screenshot Utuh Marketplace Thrifty -->
+        <div class="photo-slot relative w-full max-w-md mx-auto h-[560px] sm:h-[720px] lg:h-[860px] rounded-2xl border-2 border-stone-300 bg-stone-50 hover:border-primary transition overflow-hidden shadow-sm mb-5">
+          <img src="images/trifthy1.png" alt="Screenshot utuh website Marketplace Thrifty" class="absolute inset-0 w-full h-full object-contain p-2 cursor-zoom-in" loading="lazy" decoding="async">
+        </div>
+
+        <!-- Grid Kompak (3 Kolom di Desktop, Carousel Geser Samping di HP) -->
+        <div class="flex sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 overflow-x-auto sm:overflow-visible snap-x snap-mandatory no-scrollbar pb-2">
+          <!-- Tampilan 1 -->
+          <div data-slot-id="thrifty-1" class="photo-slot shrink-0 w-[265px] sm:w-auto snap-center relative aspect-[16/10] rounded-2xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/trifthy3.png" alt="Tampilan Marketplace Thrifty 1" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Tampilan 2 -->
+          <div data-slot-id="thrifty-2" class="photo-slot shrink-0 w-[265px] sm:w-auto snap-center relative aspect-[16/10] rounded-2xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/trifthy2.png" alt="Tampilan Marketplace Thrifty 2" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Tampilan 3 -->
+          <div data-slot-id="thrifty-3" class="photo-slot shrink-0 w-[265px] sm:w-auto snap-center relative aspect-[16/10] rounded-2xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/trifthy4.png" alt="Tampilan Marketplace Thrifty 3" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+
+          <!-- Tampilan 4 -->
+          <div data-slot-id="thrifty-4" class="photo-slot shrink-0 w-[265px] sm:w-auto snap-center relative aspect-[16/10] rounded-2xl border-2 border-stone-300 bg-white hover:border-primary transition overflow-hidden shadow-sm">
+            <img src="images/trifthy5.png" alt="Tampilan Marketplace Thrifty 4" class="absolute inset-0 w-full h-full object-cover p-2 cursor-zoom-in" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- KONTAK BAWAH (ABU-ABU NETRAL) -->
+  <footer id="kontak" class="bg-gradient-to-br from-[#404040] via-[#2B2B2B] to-[#1E1E1E] text-white pt-14 pb-10 px-5 md:px-8 mt-10">
+    <div class="max-w-5xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-10 border-b border-white/15">
+        <div>
+          <h2 class="text-2xl md:text-5xl font-extrabold tracking-tight">Mari Terhubung</h2>
+          <p class="text-stone-300 text-xs md:text-base mt-1.5">Silakan hubungi saya melalui salah satu tautan komunikasi resmi berikut.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+          <a href="https://wa.me/6285117565845" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ADADAD] text-stone-900 text-xs md:text-sm font-extrabold hover:bg-white transition shadow-sm">
+            <span class="w-5 h-5 rounded-full bg-white flex items-center justify-center shrink-0">
+              <svg viewBox="0 0 24 24" class="w-4 h-4" aria-hidden="true">
+                <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+            </span>
+            <span>WhatsApp</span>
+          </a>
+
+          <a href="https://instagram.com/rafaaawaaw" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 text-white text-xs md:text-sm font-bold hover:bg-white hover:text-stone-900 transition">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 shrink-0" aria-hidden="true">
+              <defs>
+                <linearGradient id="ig-brand-gradient" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+                  <stop offset="0" stop-color="#FEDA75"/>
+                  <stop offset="0.3" stop-color="#FA7E1E"/>
+                  <stop offset="0.55" stop-color="#D62976"/>
+                  <stop offset="0.8" stop-color="#962FBF"/>
+                  <stop offset="1" stop-color="#4F5BD5"/>
+                </linearGradient>
+              </defs>
+              <rect x="1" y="1" width="22" height="22" rx="6" fill="url(#ig-brand-gradient)"/>
+              <rect x="5.5" y="5.5" width="13" height="13" rx="4" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+              <circle cx="12" cy="12" r="3.4" fill="none" stroke="#FFFFFF" stroke-width="1.6"/>
+              <circle cx="17.2" cy="6.8" r="1.15" fill="#FFFFFF"/>
+            </svg>
+            <span>Instagram</span>
+          </a>
+
+          <a href="https://www.linkedin.com/search/results/people/?keywords=Maritza%20Fawwaz%20Rafa" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/30 text-white text-xs md:text-sm font-bold hover:bg-white hover:text-stone-900 transition">
+            <svg viewBox="0 0 24 24" class="w-5 h-5 shrink-0" aria-hidden="true">
+              <rect x="1" y="1" width="22" height="22" rx="4" fill="#0A66C2"/>
+              <path fill="#FFFFFF" d="M6.94 9.5H4.5V19h2.44V9.5zM5.72 8.3a1.42 1.42 0 1 0 0-2.84 1.42 1.42 0 0 0 0 2.84zM19.5 13.7c0-2.4-1.28-3.52-2.99-3.52-1.38 0-2 .76-2.34 1.29V9.5H11.8c.03.68 0 9.5 0 9.5h2.37v-5.3c0-.2.01-.4.07-.55.16-.4.52-.81 1.13-.81.8 0 1.12.61 1.12 1.5V19h2.44v-5.3z"/>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-stone-300">
+        <span>© 2026 Maritza Fawwaz Rafa Wiguna</span>
+        <span>@rafaaawaaw</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="hidden fixed inset-0 z-50 bg-stone-950/85 p-4 flex items-center justify-center" onclick="this.classList.add('hidden')">
+    <img id="lightbox-img" src="" alt="Pratinjau" class="max-w-full max-h-[90vh] rounded-2xl shadow-2xl">
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+    document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revealObs.observe(el));
+
+    (function() {
+      const greetings = [
+        ['Halo', 'Bahasa Indonesia'],
+        ['Sugeng rawuh', 'Bahasa Jawa'],
+        ['Wilujeng sumping', 'Bahasa Sunda'],
+        ['Horas', 'Bahasa Batak'],
+        ['Rahajeng rauh', 'Bahasa Bali'],
+        ['Salamaik datang', 'Bahasa Minang']
+      ];
+      const wordEl = document.getElementById('type-word');
+      const langEl = document.getElementById('type-lang');
+      let idx = 0, charIdx = 0, deleting = false;
+
+      function typeLoop() {
+        const [word, lang] = greetings[idx];
+        if (!deleting) {
+          charIdx++;
+          wordEl.textContent = word.slice(0, charIdx);
+          langEl.textContent = lang;
+          if (charIdx === word.length) { deleting = true; return setTimeout(typeLoop, 1700); }
+          return setTimeout(typeLoop, 85);
+        } else {
+          charIdx--;
+          wordEl.textContent = word.slice(0, charIdx);
+          if (charIdx === 0) { deleting = false; idx = (idx + 1) % greetings.length; return setTimeout(typeLoop, 260); }
+          return setTimeout(typeLoop, 45);
+        }
+      }
+      typeLoop();
+    })();
+
+    (function() {
+      const plane = document.getElementById('plane');
+      let dir = 1, lastY = window.scrollY, cx = 0, cy = 0, ca = 90, init = false;
+
+      function getTarget(progress) {
+        const amp = Math.min(window.innerWidth * 0.36, 300);
+        const x = window.innerWidth / 2 + Math.sin(progress * Math.PI * 5) * amp;
+        const y = window.innerHeight * 0.2 + progress * window.innerHeight * 0.6;
+        return [x, y];
+      }
+
+      function animatePlane() {
+        const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        const p = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+        if (window.scrollY !== lastY) { dir = window.scrollY > lastY ? 1 : -1; lastY = window.scrollY; }
+        const [tx, ty] = getTarget(p);
+        let angle = 90 - 48 * Math.cos(p * Math.PI * 5);
+        if (dir < 0) angle += 180;
+        if (!init) { cx = tx; cy = ty; ca = angle; init = true; }
+        cx += (tx - cx) * 0.1; cy += (ty - cy) * 0.1;
+        const diff = ((angle - ca + 540) % 360) - 180;
+        ca += diff * 0.1;
+        plane.style.transform = `translate(${cx - plane.offsetWidth/2}px, ${cy - plane.offsetHeight/2}px) rotate(${ca}deg)`;
+        requestAnimationFrame(animatePlane);
+      }
+      animatePlane();
+    })();
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    document.querySelectorAll('.photo-slot img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || 'Pratinjau';
+        lightbox.classList.remove('hidden');
+      });
+    });
+  </script>
+</body>
+</html>
